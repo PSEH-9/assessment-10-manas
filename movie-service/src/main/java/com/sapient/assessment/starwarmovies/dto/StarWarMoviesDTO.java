@@ -1,15 +1,15 @@
-package com.sapient.assessment.movieservice.dto;
+package com.sapient.assessment.starwarmovies.dto;
 
 import java.util.List;
 
-public class MoviesDTO {
+public class StarWarMoviesDTO {
 	
 	private String type="Planets";
 	private String name;
 	private List<String> films;
 	private int count;
 	
-	public MoviesDTO(MoviesDTOBuilder moviesDTOBuilder) {
+	public StarWarMoviesDTO(StarWarMoviesDTOBuilder moviesDTOBuilder) {
 		this.name=moviesDTOBuilder.name;
 		this.films=moviesDTOBuilder.films;
 		this.count=moviesDTOBuilder.count;
@@ -41,39 +41,47 @@ public class MoviesDTO {
 
 
 
-	public static class MoviesDTOBuilder{
+	public static class StarWarMoviesDTOBuilder{
 		private String name;
 		private List<String> films;
 		private int count;
+		private String type;
 		
-		public MoviesDTOBuilder()
+		public StarWarMoviesDTOBuilder()
 		{
 			
 		}
 		
-		public MoviesDTOBuilder name(String name) {
+		public StarWarMoviesDTOBuilder name(String name) 
+		{
 			this.name = name;
 			return this;
 		}
-		public MoviesDTOBuilder films(List<String> films) {
+		public StarWarMoviesDTOBuilder films(List<String> films) 
+		{
 			this.films= films;
 			return this;
 		}
-		public MoviesDTOBuilder count(int count) {
+		public StarWarMoviesDTOBuilder count(int count) 
+		{
 			this.count= count;
 			return this;
 		}
-		
-		public MoviesDTO build()
+		public StarWarMoviesDTOBuilder type(String type) 
 		{
-			return new MoviesDTO(this);
+			this.type= type;
+			return this;
+		}
+		public StarWarMoviesDTO build()
+		{
+			return new StarWarMoviesDTO(this);
 		}
 	}
 
 
 
-	public static MoviesDTOBuilder newBuilder() {
-		return new MoviesDTOBuilder();
+	public static StarWarMoviesDTOBuilder newBuilder() {
+		return new StarWarMoviesDTOBuilder();
 	}
 
 }

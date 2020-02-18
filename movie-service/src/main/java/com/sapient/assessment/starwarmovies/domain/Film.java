@@ -1,4 +1,4 @@
-package com.sapient.assessment.movieservice.domain;
+package com.sapient.assessment.starwarmovies.domain;
 
 import java.util.List;
 
