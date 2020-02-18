@@ -19,22 +19,45 @@ public class StarWarMovieServiceApplication {
 		SpringApplication.run(StarWarMovieServiceApplication.class, args);
 	}
 
-@FeignClient(name="planets-service",url="localhost:8100")
-public interface PlanetsClient{
-	
-	@GetMapping("/v1/planets/{name}")
-	StarWarMoviesDO getPlanetsByName(@PathVariable("name") String name);
-}
-@FeignClient(name="vehicles-service",url="localhost:8200")
-public interface VehiclesClient{
-	
-	@GetMapping("/v1/vehicles/{name}")
-	StarWarMoviesDO getVehiclesByName(@PathVariable("name") String name);
-}
-@FeignClient(name="peoples-service",url="localhost:8300")
-public interface PeoplesClient{
-	
-	@GetMapping("/v1/people/{name}")
-	StarWarMoviesDO getPeoplesByName(@PathVariable("name") String name);
-}
+	@FeignClient(name = "planets-service", url = "localhost:8100")
+	public interface PlanetsClient {
+
+		@GetMapping("/v1/planets/{name}")
+		StarWarMoviesDO getPlanetsByName(@PathVariable("name") String name);
+	}
+
+	@FeignClient(name = "vehicles-service", url = "localhost:8200")
+	public interface VehiclesClient {
+
+		@GetMapping("/v1/vehicles/{name}")
+		StarWarMoviesDO getVehiclesByName(@PathVariable("name") String name);
+	}
+
+	@FeignClient(name = "peoples-service", url = "localhost:8300")
+	public interface PeoplesClient {
+
+		@GetMapping("/v1/people/{name}")
+		StarWarMoviesDO getPeoplesByName(@PathVariable("name") String name);
+	}
+
+	@FeignClient(name = "films-service", url = "localhost:8400")
+	public interface FilmsClient {
+
+		@GetMapping("/v1/films/{name}")
+		StarWarMoviesDO getFilmsByName(@PathVariable("name") String name);
+	}
+
+	@FeignClient(name = "species-service", url = "localhost:8500")
+	public interface SpeciesClient {
+
+		@GetMapping("/v1/species/{name}")
+		StarWarMoviesDO getSpeciesByName(@PathVariable("name") String name);
+	}
+
+	@FeignClient(name = "spaceships-service", url = "localhost:8600")
+	public interface SpaceshipsClient {
+
+		@GetMapping("/v1/spaceships/{name}")
+		StarWarMoviesDO getSpaceshipsByName(@PathVariable("name") String name);
+	}
 }

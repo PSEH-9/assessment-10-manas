@@ -4,7 +4,7 @@ import java.util.List;
 
 public class StarWarMoviesDTO {
 	
-	private String type="Planets";
+	private String type;
 	private String name;
 	private List<String> films;
 	private int count;

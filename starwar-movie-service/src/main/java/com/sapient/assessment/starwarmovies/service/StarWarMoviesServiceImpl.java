@@ -5,10 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.FilmsClient;
 import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.PeoplesClient;
 import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.PlanetsClient;
+import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.SpaceshipsClient;
+import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.SpeciesClient;
 import com.sapient.assessment.starwarmovies.StarWarMovieServiceApplication.VehiclesClient;
 import com.sapient.assessment.starwarmovies.domain.StarWarMoviesDO;
+import com.sapient.assessment.starwarmovies.exception.StarWarMovieNotFoundException;
 
 /**
  * Service to have business logic for some planets specific things.
@@ -26,6 +30,12 @@ public class StarWarMoviesServiceImpl implements StarWarMoviesService{
 	VehiclesClient vehiclesClient;
 	@Autowired
 	PeoplesClient peoplesClient;
+	@Autowired
+	FilmsClient filmsClient;
+	@Autowired
+	SpeciesClient speciesClient;
+	@Autowired
+	SpaceshipsClient spaceshipsClient;
 	
 	@Override
 	public StarWarMoviesDO findByName(String type,String name) throws Exception {
@@ -45,6 +55,24 @@ public class StarWarMoviesServiceImpl implements StarWarMoviesService{
 		{
 			moviesDetails = peoplesClient.getPeoplesByName(name);
 		}
+		else if("films".equalsIgnoreCase(type))
+		{
+			moviesDetails = filmsClient.getFilmsByName(name);
+		}
+		
+		else if("species".equalsIgnoreCase(type))
+		{
+			moviesDetails = speciesClient.getSpeciesByName(name);
+		}
+		else if("spaceships".equalsIgnoreCase(type))
+		{
+			moviesDetails = spaceshipsClient.getSpaceshipsByName(name);
+		}
+		else
+		{
+			throw new StarWarMovieNotFoundException("Invalid movie type");
+		}
+		
 		if(moviesDetails!=null)
 		{
 			moviesDetails.setType(type);
