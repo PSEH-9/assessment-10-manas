@@ -1,14 +1,15 @@
-package com.sapient.assessment.vehicles.dto;
+package com.sapient.assessment.films.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class VehiclesDTO {
+public class FilmsDTO {
 		
 	private String name;
 	private List<String> films;
 	private int count;
 	
-	public VehiclesDTO(VehiclesDTOBuilder vehiclesDTOBuilder) {
+	public FilmsDTO(FilmsDTOBuilder vehiclesDTOBuilder) {
 		this.name=vehiclesDTOBuilder.name;
 		this.films=vehiclesDTOBuilder.films;
 		this.count=vehiclesDTOBuilder.count;
@@ -23,6 +24,10 @@ public class VehiclesDTO {
 
 
 	public List<String> getFilms() {
+		if(films==null)
+		{
+			films = new ArrayList<>();
+		}
 		return films;
 	}
 
@@ -33,39 +38,40 @@ public class VehiclesDTO {
 	}
 
 
-	public static class VehiclesDTOBuilder{
+	public static class FilmsDTOBuilder{
 		private String name;
 		private List<String> films;
 		private int count;
 		
-		public VehiclesDTOBuilder()
+		public FilmsDTOBuilder()
 		{
 			
 		}
 		
-		public VehiclesDTOBuilder name(String name) {
+		public FilmsDTOBuilder name(String name) {
 			this.name = name;
 			return this;
 		}
-		public VehiclesDTOBuilder films(List<String> films) {
-			this.films= films;
+		public FilmsDTOBuilder films(String films) {
+			this.films= new ArrayList<>();
+			this.films.add(films);
 			return this;
 		}
-		public VehiclesDTOBuilder count(int count) {
+		public FilmsDTOBuilder count(int count) {
 			this.count= count;
 			return this;
 		}
 		
-		public VehiclesDTO build()
+		public FilmsDTO build()
 		{
-			return new VehiclesDTO(this);
+			return new FilmsDTO(this);
 		}
 	}
 
 
 
-	public static VehiclesDTOBuilder newBuilder() {
-		return new VehiclesDTOBuilder();
+	public static FilmsDTOBuilder newBuilder() {
+		return new FilmsDTOBuilder();
 	}
 
 }

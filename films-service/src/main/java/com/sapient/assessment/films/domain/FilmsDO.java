@@ -1,18 +1,21 @@
-package com.sapient.assessment.vehicles.domain;
+package com.sapient.assessment.films.domain;
 
 import java.util.List;
 
-public class VehiclesDO {
+import com.sapient.assessment.vehicles.domain.Film;
+
+public class FilmsDO {
 	
 	private List<Film> results;
+	
 	private int count;
 	
-	public VehiclesDO() {
+	public FilmsDO() {
 		super();
 	}
 	
 	
-	public VehiclesDO(List<Film> films, int count) {
+	public FilmsDO(List<Film> films, int count) {
 		super();		
 		this.results = films;
 		this.count = count;

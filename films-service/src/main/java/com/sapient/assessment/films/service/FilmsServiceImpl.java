@@ -1,4 +1,4 @@
-package com.sapient.assessment.vehicles.service;
+package com.sapient.assessment.films.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.sapient.assessment.films.domain.FilmsDO;
+import com.sapient.assessment.films.exceptions.FilmsNotFoundException;
 import com.sapient.assessment.vehicles.domain.Film;
-import com.sapient.assessment.vehicles.domain.VehiclesDO;
-import com.sapient.assessment.vehicles.exceptions.VehiclesNotFoundException;
 
 /**
  * Service to have business logic for some planets specific things.
@@ -27,9 +27,9 @@ import com.sapient.assessment.vehicles.exceptions.VehiclesNotFoundException;
  */
 
 @Service
-public class VehiclesServiceImpl implements VehiclesService{
+public class FilmsServiceImpl implements FilmsService{
 
-	Logger log = LoggerFactory.getLogger(VehiclesServiceImpl.class);
+	Logger log = LoggerFactory.getLogger(FilmsServiceImpl.class);
 	
 	@Value("${swapi.planets}")
 	private String SWAPI_PLANETS;
@@ -39,14 +39,14 @@ public class VehiclesServiceImpl implements VehiclesService{
 	
 	
 	@Override
-	public VehiclesDO findByName(String name) throws Exception {
+	public FilmsDO findByName(String name) throws Exception {
 		
-		VehiclesDO planets = getPlanets();	
+		FilmsDO planets = getFilms();	
 		
 		
 			if(planets==null || planets.getResults()==null)
 			{
-				throw new VehiclesNotFoundException("Planet not found by name"+name);
+				throw new FilmsNotFoundException("Planet not found by name"+name);
 			}
 			else
 			{
@@ -55,7 +55,7 @@ public class VehiclesServiceImpl implements VehiclesService{
 				.collect(Collectors.toList());
 				if(films.size()==0)
 				{
-					throw new VehiclesNotFoundException("Planet not found by name: "+name);
+					throw new FilmsNotFoundException("Planet not found by name: "+name);
 				}
 				planets.setResults(films);
 			}
@@ -64,24 +64,24 @@ public class VehiclesServiceImpl implements VehiclesService{
 		return planets;
 	}
 	
-	private VehiclesDO getPlanets() throws Exception
+	private FilmsDO getFilms() throws Exception
 	{
 		HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-        VehiclesDO planetsDO;
+        FilmsDO filmsDO;
 		try {
-			planetsDO = restTemplate.exchange(SWAPI_PLANETS,
+			filmsDO = restTemplate.exchange(SWAPI_PLANETS,
 					HttpMethod.GET,
 					entity,
-					new ParameterizedTypeReference<VehiclesDO>() {}).getBody();
+					new ParameterizedTypeReference<FilmsDO>() {}).getBody();
 		} catch (RestClientException e) {
 			log.error("ERROR::",e.getMessage());
-			throw new Exception("Planet server is down");
+			throw new Exception("Films server is unavailable");
 		}
 		
-		return planetsDO;
+		return filmsDO;
 	}
 
 }

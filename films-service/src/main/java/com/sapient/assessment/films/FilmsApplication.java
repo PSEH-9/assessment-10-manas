@@ -1,4 +1,4 @@
-package com.sapient.assessment.vehicles;
+package com.sapient.assessment.films;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class VehiclesApplication {
+public class FilmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VehiclesApplication.class, args);
+		SpringApplication.run(FilmsApplication.class, args);
 	}
 
 	

@@ -2,14 +2,24 @@ package com.sapient.assessment.vehicles.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Film {
 	
+	@JsonProperty("title")
 	private String name;
-	private List<String> films;
+	
+	@JsonProperty("url")
+	private String films;
 
 	
 	public Film() {
 		super();
+	}
+
+	public Film(String name,String films) {
+		this.name=name;
+		this.films=films;
 	}
 
 	public String getName() {
@@ -20,11 +30,11 @@ public class Film {
 		this.name = name;
 	}
 
-	public List<String> getFilms() {
+	public String getFilms() {
 		return films;
 	}
 
-	public void setFilms(List<String> films) {
+	public void setFilms(String films) {
 		this.films = films;
 	}
 	
