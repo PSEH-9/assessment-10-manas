@@ -1,10 +1,10 @@
-package com.sapient.assessment.spaceshipsservice;
+package com.sapient.assessment.starwarmovies;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpaceshipsServiceApplicationTests {
+class StarwarMvoiesServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
